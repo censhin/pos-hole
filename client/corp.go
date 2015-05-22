@@ -7,7 +7,6 @@ import (
 
 func (client *Client) CorpAccountBalance(characterId string) (*AccountBalance, error) {
     resource := "/corp/AccountBalance.xml.aspx"
-    //params := fmt.Sprintf("&characterID=%v", characterId)
     output := AccountBalance{}
 
     err := ApiV2Request(client, resource, "", &output)

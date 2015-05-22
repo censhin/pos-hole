@@ -9,11 +9,11 @@ import (
 
 func main() {
     baseUrl := "https://api.eveonline.com"
-    keyId := "4394542"
-    vCode := "rIgfd5ofkJJm7m9AzNI4Pq5FLQaibOUPM3n9J4teCiMBAidgiFOhzaEFaq32MY5p"
+    keyId := ""
+    vCode := ""
 
     client := client.NewClient(baseUrl, keyId, vCode)
-    resp, err := client.CorpAccountBalance("1853330359")
+    resp, err := client.CorpAccountBalance("")
     if err != nil {
         log.Fatal(err)
     }

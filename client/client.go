@@ -1,14 +1,10 @@
 package client
 
 import (
-//    "bytes"
     "encoding/xml"
     "fmt"
-    //"io"
-//    "io/ioutil"
     "log"
     "net/http"
-    //"os"
 )
 
 type Client struct {
@@ -27,7 +23,12 @@ func NewClient(baseUrl string, keyId string, vCode string) *Client {
 }
 
 func ApiV2Request(client *Client, resource string, params string, output interface{}) error {
-    url := fmt.Sprintf("%v%v?keyID=%v&vCode=%v%v", client.BaseUrl, resource, client.KeyId, client.VCode, params)
+    url := fmt.Sprintf("%v%v?keyID=%v&vCode=%v%v",
+                       client.BaseUrl,
+                       resource,
+                       client.KeyId,
+                       client.VCode,
+                       params)
 
     resp, err := http.Get(url)
     if err != nil {
