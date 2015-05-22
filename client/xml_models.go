@@ -24,14 +24,14 @@ type AccountBalance struct {
 }
 
 type Starbase struct {
-    ItemId          string   `xml:"itemID,attr"`
-    TypeId          string   `xml:"typeID,attr"`
-    LocationId      string   `xml:"locationID,attr"`
-    MoonId          string   `xml:"moonID,attr"`
-    State           string   `xml:"state,attr"`
-    StateTimestamp  string   `xml:"stateTimestamp,attr"`
-    OnlineTimestamp string   `xml:"onlineTimestamp,attr"`
-    StandingOwnerId string   `xml:"standingOwnerID,attr"`
+    ItemId          string `xml:"itemID,attr"`
+    TypeId          string `xml:"typeID,attr"`
+    LocationId      string `xml:"locationID,attr"`
+    MoonId          string `xml:"moonID,attr"`
+    State           string `xml:"state,attr"`
+    StateTimestamp  string `xml:"stateTimestamp,attr"`
+    OnlineTimestamp string `xml:"onlineTimestamp,attr"`
+    StandingOwnerId string `xml:"standingOwnerID,attr"`
 }
 
 type StarbaseList struct {
