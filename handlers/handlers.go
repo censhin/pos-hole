@@ -10,10 +10,9 @@ type HealthCheck struct {
     Msg string
 }
 
-func healthHandler(w http.ResponseWriter, r *http.Request) {
+func healthCheckHandler(w http.ResponseWriter, r *http.Request) {
     h := &HealthCheck{"ok"}
     body := make(map[string]interface{})
-
     body["msg"] = h.Msg
 
     b, err := json.Marshal(body)
@@ -25,6 +24,7 @@ func healthHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func InitHandlers() {
-    http.HandleFunc("/health", healthHandler)
+    http.HandleFunc("/health", healthCheckHandler)
+    http.HandleFunc("/corp/account-balance", corpAccountBalanceHandler)
 }
 
