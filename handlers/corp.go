@@ -51,3 +51,21 @@ func corpStarbaseDetailHandler(w http.ResponseWriter, r *http.Request) {
     w.Write(b)
 }
 
+func corpStarbaseListHandler(w http.ResponseWriter, r *http.Request) {
+    resp, err := eveClient.StarbaseList()
+    if err != nil {
+        log.Panic(err)
+    }
+
+    body := make(map[string]interface{})
+    body["resp"] = resp
+
+    b, err := json.Marshal(body)
+    if err != nil {
+        log.Panic(err)
+    }
+
+    w.Write(b)
+}
+
+
