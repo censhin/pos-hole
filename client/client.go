@@ -50,10 +50,3 @@ func ApiV2Request(client *Client, resource string, params string, output interfa
     return nil
 }
 
-/*
-* Work in Progress
-*
-func XmlToJson(data io.Reader, output interface{}) ([]byte, error) {
-}
-*/
-

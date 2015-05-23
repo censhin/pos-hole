@@ -23,6 +23,45 @@ type AccountBalance struct {
     Result []Account `xml:"result>rowset>row"`
 }
 
+type StarbaseRow struct {
+    TypeId   string `xml:"typeID,attr"`
+    Quantity string `xml:"quantity,attr"`
+}
+
+type StarbaseOnStatusDrop struct {
+    Enabled  string `xml:"enabled"`
+    Standing string `xml:"standing"`
+}
+
+type StarbaseCombatSettings struct {
+    UseStandingsFrom string               `xml:"useStandingsFrom>ownerID,attr"`
+    OnStandingDrop   string               `xml:"onStandingDrop>standing,attr"`
+    OnStatusDrop     StarbaseOnStatusDrop `xml:"onStatusDrop"`
+    OnAggression     string               `xml:"onAggression>enabled,attr"`
+    OnCorporationWar string               `xml:"onCorporationWar>enabled,attr"`
+}
+
+type StarbaseGeneralSettings struct {
+    UsageFlags       int `xml:"usageFlags"`
+    deployFlags      int `xml:"deployFlags"`
+    AllowCorpMembers int `xml:"allowCorporationMembers"`
+    AllowAllyMembers int `xml:"allowAllianceMembers"`
+}
+
+type StarbaseDetailResult struct {
+    State           int                     `xml:"state"`
+    StateTimestamp  eveTime                 `xml:"stateTimestamp"`
+    OnlineTimestamp eveTime                 `xml:"onlineTimestamp"`
+    GeneralSettings StarbaseGeneralSettings `xml:"generalSettings"`
+    CombatSettings  StarbaseCombatSettings  `xml:"combatSettings"`
+    Rowset          []StarbaseRow           `xml:"rowset>row"`
+}
+
+type StarbaseDetail struct {
+    APIResult
+    Result []StarbaseDetailResult `xml:"result"`
+}
+
 type Starbase struct {
     ItemId          string `xml:"itemID,attr"`
     TypeId          string `xml:"typeID,attr"`

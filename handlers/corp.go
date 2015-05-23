@@ -32,3 +32,22 @@ func corpAccountBalanceHandler(w http.ResponseWriter, r *http.Request) {
     w.Write(b)
 }
 
+func corpStarbaseDetailHandler(w http.ResponseWriter, r *http.Request) {
+    itemId := r.URL.Query()
+
+    resp, err := eveClient.StarbaseDetail(itemId["itemID"][0])
+    if err != nil {
+        log.Panic(err)
+    }
+
+    body := make(map[string]interface{})
+    body["resp"] = resp
+
+    b, err := json.Marshal(body)
+    if err != nil {
+        log.Panic(err)
+    }
+
+    w.Write(b)
+}
+
