@@ -5,6 +5,8 @@ import (
     "fmt"
     "log"
     "net/http"
+
+    "github.com/censhin/pos-hole/config"
 )
 
 type Client struct {
@@ -13,11 +15,12 @@ type Client struct {
     VCode   string
 }
 
-func NewClient(baseUrl string, keyId string, vCode string) *Client {
+func NewClient() *Client {
     client := new(Client)
-    client.BaseUrl = baseUrl
-    client.KeyId = keyId
-    client.VCode = vCode
+    conf := config.GetConfig()
+    client.BaseUrl = conf.BaseUrl
+    client.KeyId = conf.KeyId
+    client.VCode = conf.VCode
 
     return client
 }
@@ -46,11 +49,4 @@ func ApiV2Request(client *Client, resource string, params string, output interfa
 
     return nil
 }
-
-/*
-* Work in Progress
-*
-func XmlToJson(data io.Reader, output interface{}) ([]byte, error) {
-}
-*/
 
