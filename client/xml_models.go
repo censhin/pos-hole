@@ -23,6 +23,31 @@ type AccountBalance struct {
     Result []Account `xml:"result>rowset>row"`
 }
 
+type Assets struct {
+    ItemId      int `xml:"itemID,attr"`
+    TypeId      int `xml:"typeID,attr"`
+    Quantity    int `xml:"quantity,attr"`
+    Flag        int `xml:"flag,attr"`
+    Singleton   bool `xml:"singleton,attr"`
+    RawQuantity int `xml:"rawQuantity,attr"`
+}
+
+type AssetLocations struct {
+    ItemId      int `xml:"itemID,attr"`
+    LocationId  int `xml:"locationID,attr"`
+    TypeId      int `xml:"typeID,attr"`
+    Quantity    int `xml:"quantity,attr"`
+    Flag        int `xml:"flag,attr"`
+    Singleton   bool `xml:"singleton,attr"`
+    RawQuantity int `xml:"rawQuantity,attr"`
+    Assets     []Assets `xml:"rowset>row"`
+}
+
+type AssetList struct {
+    APIResult
+    Result []AssetLocations `xml:"result>rowset>row"`
+}
+
 type StarbaseRow struct {
     TypeId   string `xml:"typeID,attr"`
     Quantity string `xml:"quantity,attr"`
