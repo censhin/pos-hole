@@ -24,6 +24,12 @@ func healthCheckHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func posReinforced(w http.ResponseWriter, r *http.Request) {
+    /**
+    * Steps
+    * 1. Get time the POS was reinforced.
+    * 2. Calculate time the POS will come out of reinforced.
+    * 3. Return POS data and reinforced information.
+    */
 }
 
 func InitHandlers() {
