@@ -23,11 +23,15 @@ func healthCheckHandler(w http.ResponseWriter, r *http.Request) {
     w.Write(b)
 }
 
+func posReinforced(w http.ResponseWriter, r *http.Request) {
+}
+
 func InitHandlers() {
     http.HandleFunc("/health", healthCheckHandler)
     http.HandleFunc("/corp/account-balance", corpAccountBalanceHandler)
     http.HandleFunc("/corp/asset-list", corpAssetListHandler)
     http.HandleFunc("/corp/starbases/{id}", corpStarbaseDetailHandler)
     http.HandleFunc("/corp/starbases", corpStarbaseListHandler)
+    http.HandleFunc("/pos/reinforced", posReinforced)
 }
 
