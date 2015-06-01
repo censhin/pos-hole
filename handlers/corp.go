@@ -4,10 +4,13 @@ import (
     "encoding/json"
     "log"
     "net/http"
-    "github.com/censhin/pos-hole/client"
+
+    "github.com/censhin/pos-hole/config"
+    ec "github.com/censhin/eve-client"
 )
 
-var eveClient *client.Client = client.NewClient()
+var conf *config.Config = config.GetConfig()
+var client *ec.Client = ec.NewClient(conf.BaseUrl, conf.KeyId, conf.VCode)
 
 type Response struct {
     Resp struct{}
@@ -28,7 +31,7 @@ func writeResponse(resp interface{}, w http.ResponseWriter) {
 func corpAccountBalanceHandler(w http.ResponseWriter, r *http.Request) {
     charId := r.URL.Query()
 
-    resp, err := eveClient.CorpAccountBalance(charId["characterID"][0])
+    resp, err := client.CorpAccountBalance(charId["characterID"][0])
     if err != nil {
         log.Panic(err)
     }
@@ -39,7 +42,7 @@ func corpAccountBalanceHandler(w http.ResponseWriter, r *http.Request) {
 func corpAssetListHandler(w http.ResponseWriter, r *http.Request) {
     charId := r.URL.Query()
 
-    resp, err := eveClient.CorpAssetList(charId["characterID"][0])
+    resp, err := client.CorpAssetList(charId["characterID"][0])
     if err != nil {
         log.Panic(err)
     }
@@ -50,7 +53,7 @@ func corpAssetListHandler(w http.ResponseWriter, r *http.Request) {
 func corpStarbaseDetailHandler(w http.ResponseWriter, r *http.Request) {
     itemId := r.URL.Query()
 
-    resp, err := eveClient.StarbaseDetail(itemId["itemID"][0])
+    resp, err := client.StarbaseDetail(itemId["itemID"][0])
     if err != nil {
         log.Panic(err)
     }
@@ -59,12 +62,11 @@ func corpStarbaseDetailHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func corpStarbaseListHandler(w http.ResponseWriter, r *http.Request) {
-    resp, err := eveClient.StarbaseList()
+    resp, err := client.StarbaseList()
     if err != nil {
         log.Panic(err)
     }
 
     writeResponse(resp, w)
 }
-
 
